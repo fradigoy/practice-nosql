@@ -24,16 +24,17 @@ connexionMongo =  Mongo::Connection.new
 db = connexionMongo['githubarchive']
 
 
-{1..23}.each do |hour|
-		puts "..... hour #{hour}"
-	 
-	gz = open('http://data.githubarchive.org/2015-01-01-12-#{hour}.json.gz')
+{0...23}.each do |hour|
+	puts "..... hour #{hour}" 
+	gz = open("http://data.githubarchive.org/2015-01-01-12-#{hour}.json.gz")
 	js = Zlib::GzipReader.new(gz).read
 	 
 	Yajl::Parser.parse(js) do |event|
-
 	  event['create_at'] = Time.parse(event['create_at'])
 	  db['events'] << event 
 	end
 end
 
+#Exemples
+
+db['events'].aggregate([{:groupe=>{:_id=>{:$hour=>'$create_at'}, :count=>{:$sum=> 1}}}])
