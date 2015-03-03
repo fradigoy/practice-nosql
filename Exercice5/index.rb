@@ -32,7 +32,7 @@ js = Zlib::GzipReader.new(gz).read
  
 Yajl::Parser.parse(js) do |event|
 
-  event['create_at'] = Time.parse(event[create_at])
+  event['create_at'] = Time.parse(event['create_at'])
   db['events'] << event 
 end
 
