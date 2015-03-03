@@ -7,8 +7,8 @@ require 'zlib'
 require 'yajl'
 require 'mongo'
 
-connexionMongo ==  Mongo::Connection.new
-db = mongo['githubarchive']
+connexionMongo =  Mongo::Connection.new
+db = connexionMongo['githubarchive']
  
 gz = open('http://data.githubarchive.org/2015-01-01-12.json.gz')
 js = Zlib::GzipReader.new(gz).read
