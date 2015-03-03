@@ -25,15 +25,15 @@ db = connexionMongo['githubarchive']
 
 
 {1...23}.each do |hour|
-	puts "..... hour #{hour}"
- 
-gz = open('http://data.githubarchive.org/2015-01-01-12-#{hour}.json.gz')
-js = Zlib::GzipReader.new(gz).read
- 
-Yajl::Parser.parse(js) do |event|
+		puts "..... hour #{hour}"
+	 
+	gz = open('http://data.githubarchive.org/2015-01-01-12-#{hour}.json.gz')
+	js = Zlib::GzipReader.new(gz).read
+	 
+	Yajl::Parser.parse(js) do |event|
 
-  event['create_at'] = Time.parse(event['create_at'])
-  db['events'] << event 
+	  event['create_at'] = Time.parse(event['create_at'])
+	  db['events'] << event 
+	end
 end
-
 
