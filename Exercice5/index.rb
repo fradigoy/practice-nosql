@@ -24,7 +24,7 @@ connexionMongo =  Mongo::Connection.new
 db = connexionMongo['githubarchive']
 
 
-{1...23}.each do |hour|
+{1..23}.each do |hour|
 		puts "..... hour #{hour}"
 	 
 	gz = open('http://data.githubarchive.org/2015-01-01-12-#{hour}.json.gz')
