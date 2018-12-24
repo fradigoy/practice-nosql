@@ -1,4 +1,4 @@
-# TDs-NoSQL
+# Practices-NoSQL
 
     - Langage de développement : Ruby
     - Base de données NoSQL: Redis, MongoDB, ArangoDB, Elasticsearch
